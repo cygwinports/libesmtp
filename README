@@ -1,0 +1,97 @@
+libesmtp
+------------------------------------------
+libESMTP is an SMTP client which manages posting (or submission of) 
+electronic mail via a preconfigured Mail Transport Agent (MTA). It may 
+be used as part of a Mail User Agent (MUA) or other program that must be 
+able to post electronic mail but where mail functionality is not that 
+program's primary purpose.
+
+Runtime requirements:
+  cygwin-1.5.24-2
+  openssl-0.9.8e-3
+  exim OR ssmtp OR another SMTP server
+
+Build requirements:
+(besides corresponding -devel packages)
+  cygwin-1.5.24-2
+  autoconf2.5-2.61-1
+  automake1.9-1.9.6-2
+  binutils-20060817-1
+  bison-2.3-1
+  cygport-0.2.11-1
+  flex-2.5.33-1
+  gawk-3.1.5-4
+  gcc-core-3.4.4-3
+  libtool1.5-1.5.23a-2
+  make-3.81-1
+  sed-4.1.5-2
+
+Canonical website:
+  http://www.stafford.uklinux.net/libesmtp/
+
+Canonical download:
+  http://www.stafford.uklinux.net/libesmtp/download.html
+
+License:
+  LGPL-2.1
+
+-------------------------------------------
+
+Build instructions:
+  unpack libesmtp-1.0.4-X-src.tar.bz2
+    if you use setup to install this src package, it will be
+	 unpacked under /usr/src automatically
+  cd /usr/src
+  cygport ./libesmtp-1.0.4-X.cygport all
+
+This will create:
+  /usr/src/libesmtp-1.0.4-X-src.tar.bz2
+  /usr/src/libesmtp-1.0.4-X.tar.bz2
+  /usr/src/libesmtp-devel-1.0.4-X.tar.bz2
+  /usr/src/libesmtp5-1.0.4-X.tar.bz2
+
+-------------------------------------------
+
+Files included in the binary packages:
+
+(libesmtp)
+  /usr/lib/esmtp-plugins/sasl-cram-md5.dll
+  /usr/lib/esmtp-plugins/sasl-cram-md5.la
+  /usr/lib/esmtp-plugins/sasl-login.dll
+  /usr/lib/esmtp-plugins/sasl-login.la
+  /usr/lib/esmtp-plugins/sasl-ntlm.dll
+  /usr/lib/esmtp-plugins/sasl-ntlm.la
+  /usr/lib/esmtp-plugins/sasl-plain.dll
+  /usr/lib/esmtp-plugins/sasl-plain.la
+  /usr/share/doc/Cygwin/libesmtp-1.0.4.README
+  /usr/share/doc/libesmtp-1.0.4/AUTHORS
+  /usr/share/doc/libesmtp-1.0.4/COPYING
+  /usr/share/doc/libesmtp-1.0.4/COPYING.LIB
+  /usr/share/doc/libesmtp-1.0.4/ChangeLog
+  /usr/share/doc/libesmtp-1.0.4/INSTALL
+  /usr/share/doc/libesmtp-1.0.4/NEWS
+  /usr/share/doc/libesmtp-1.0.4/NOTES
+  /usr/share/doc/libesmtp-1.0.4/README
+  /usr/share/doc/libesmtp-1.0.4/TODO
+
+(libesmtp5)
+  /usr/bin/cygesmtp-5.dll
+
+(libesmtp-devel)
+  /usr/bin/libesmtp-config
+  /usr/include/auth-client.h
+  /usr/include/auth-plugin.h
+  /usr/include/libesmtp.h
+  /usr/lib/libesmtp.dll.a
+  /usr/lib/libesmtp.la
+
+------------------
+
+Port Notes:
+
+----- version 1.0.4-1 -----
+Initial release for Cygwin.
+
+
+Cygwin port maintained by:
+http://cygwinports.dotsrc.org/

@@ -1,0 +1,118 @@
+diff -urN -x CYGWIN-PATCHES -x 'aclocal.m4*' -x autom4te.cache -x config.cache -x config.log -x config.status -x config.h -x config.h.in -x ABOUT-NLS -x Makefile.in.in -x Makevars.template -x '*SlackBuild*' -x '*.egg-info' -x '*.class' -x '*.pyc' -x '*.mo' -x '*.gmo' -x '*.orig' -x '*.rej' -x '*.spec' -x '*.temp' -x '*~' -x '*.stackdump' -x COPYING -x INSTALL -x compile -x config-ml.in -x config.guess -x config.sub -x depcomp -x elisp-comp -x install-sh -x ltmain.sh -x mdate-sh -x missing -x mkinstalldirs -x py-compile -x symlink-tree -x texinfo.tex -x ylwrap -x Makefile.in -x makefile.in -x configure -x omf.make -x xmldocs.make -x gnome-doc-utils.make -x gnome-doc-utils.m4 -x intltool.m4 -x intltool-extract -x intltool-extract.in -x intltool-merge -x intltool-merge.in -x intltool-update -x intltool-update.in origsrc/libesmtp-1.0.4/Makefile.am src/libesmtp-1.0.4/Makefile.am
+--- origsrc/libesmtp-1.0.4/Makefile.am	2005-12-16 07:26:01.000000000 -0600
++++ src/libesmtp-1.0.4/Makefile.am	2007-05-31 23:17:59.000000000 -0500
+@@ -20,7 +20,7 @@
+ libesmtp_la_LIBADD = @LTLIBOBJS@
+ 
+ libesmtp_la_LDFLAGS = -export-dynamic \
+-		      -version-info $(LIBESMTP_VERSION)
++		      -version-info $(LIBESMTP_VERSION) -no-undefined
+ 
+ include_HEADERS = libesmtp.h auth-client.h auth-plugin.h 
+ 
+diff -urN -x CYGWIN-PATCHES -x 'aclocal.m4*' -x autom4te.cache -x config.cache -x config.log -x config.status -x config.h -x config.h.in -x ABOUT-NLS -x Makefile.in.in -x Makevars.template -x '*SlackBuild*' -x '*.egg-info' -x '*.class' -x '*.pyc' -x '*.mo' -x '*.gmo' -x '*.orig' -x '*.rej' -x '*.spec' -x '*.temp' -x '*~' -x '*.stackdump' -x COPYING -x INSTALL -x compile -x config-ml.in -x config.guess -x config.sub -x depcomp -x elisp-comp -x install-sh -x ltmain.sh -x mdate-sh -x missing -x mkinstalldirs -x py-compile -x symlink-tree -x texinfo.tex -x ylwrap -x Makefile.in -x makefile.in -x configure -x omf.make -x xmldocs.make -x gnome-doc-utils.make -x gnome-doc-utils.m4 -x intltool.m4 -x intltool-extract -x intltool-extract.in -x intltool-merge -x intltool-merge.in -x intltool-update -x intltool-update.in origsrc/libesmtp-1.0.4/auth-client.c src/libesmtp-1.0.4/auth-client.c
+--- origsrc/libesmtp-1.0.4/auth-client.c	2002-01-28 07:21:31.000000000 -0600
++++ src/libesmtp-1.0.4/auth-client.c	2007-05-31 23:22:02.453125000 -0500
+@@ -33,7 +33,11 @@
+ #if HAVE_DLSYM
+ # include <dlfcn.h>
+ # ifndef DLEXT
+-#  define DLEXT ".so"
++#  ifdef __CYGWIN__
++#    define DLEXT ".dll"
++#  else
++#    define DLEXT ".so"
++#  endif
+ # endif
+ # ifndef RTLD_LAZY
+ #  define RTLD_LAZY RTLD_NOW
+diff -urN -x CYGWIN-PATCHES -x 'aclocal.m4*' -x autom4te.cache -x config.cache -x config.log -x config.status -x config.h -x config.h.in -x ABOUT-NLS -x Makefile.in.in -x Makevars.template -x '*SlackBuild*' -x '*.egg-info' -x '*.class' -x '*.pyc' -x '*.mo' -x '*.gmo' -x '*.orig' -x '*.rej' -x '*.spec' -x '*.temp' -x '*~' -x '*.stackdump' -x COPYING -x INSTALL -x compile -x config-ml.in -x config.guess -x config.sub -x depcomp -x elisp-comp -x install-sh -x ltmain.sh -x mdate-sh -x missing -x mkinstalldirs -x py-compile -x symlink-tree -x texinfo.tex -x ylwrap -x Makefile.in -x makefile.in -x configure -x omf.make -x xmldocs.make -x gnome-doc-utils.make -x gnome-doc-utils.m4 -x intltool.m4 -x intltool-extract -x intltool-extract.in -x intltool-merge -x intltool-merge.in -x intltool-update -x intltool-update.in origsrc/libesmtp-1.0.4/configure.in src/libesmtp-1.0.4/configure.in
+--- origsrc/libesmtp-1.0.4/configure.in	2005-12-15 14:37:42.000000000 -0600
++++ src/libesmtp-1.0.4/configure.in	2007-05-31 22:11:04.187500000 -0500
+@@ -64,7 +64,7 @@
+ osf*)
+ 	AC_DEFINE(_OSF_SOURCE,1,[OSF needs this for getaddrinfo])
+ 	;;
+-*gnu*)
++*gnu*|cygwin*)
+ 	AC_DEFINE(_GNU_SOURCE,1,[GNU needs this for strcasecmp etc])
+ 	;;
+ esac
+diff -urN -x CYGWIN-PATCHES -x 'aclocal.m4*' -x autom4te.cache -x config.cache -x config.log -x config.status -x config.h -x config.h.in -x ABOUT-NLS -x Makefile.in.in -x Makevars.template -x '*SlackBuild*' -x '*.egg-info' -x '*.class' -x '*.pyc' -x '*.mo' -x '*.gmo' -x '*.orig' -x '*.rej' -x '*.spec' -x '*.temp' -x '*~' -x '*.stackdump' -x COPYING -x INSTALL -x compile -x config-ml.in -x config.guess -x config.sub -x depcomp -x elisp-comp -x install-sh -x ltmain.sh -x mdate-sh -x missing -x mkinstalldirs -x py-compile -x symlink-tree -x texinfo.tex -x ylwrap -x Makefile.in -x makefile.in -x configure -x omf.make -x xmldocs.make -x gnome-doc-utils.make -x gnome-doc-utils.m4 -x intltool.m4 -x intltool-extract -x intltool-extract.in -x intltool-merge -x intltool-merge.in -x intltool-update -x intltool-update.in origsrc/libesmtp-1.0.4/crammd5/Makefile.am src/libesmtp-1.0.4/crammd5/Makefile.am
+--- origsrc/libesmtp-1.0.4/crammd5/Makefile.am	2005-12-16 07:26:08.000000000 -0600
++++ src/libesmtp-1.0.4/crammd5/Makefile.am	2007-05-31 22:20:38.062500000 -0500
+@@ -2,13 +2,13 @@
+ 
+ libdir = @plugindir@
+ 
+-INCLUDES = -I@srcdir@
++INCLUDES = -I$(top_srcdir)
+ AM_CFLAGS = @CFLAGS@ @EXTRA_CFLAGS@
+ 
+ lib_LTLIBRARIES = sasl-cram-md5.la
+ 
+ sasl_cram_md5_la_SOURCES = client-crammd5.c hmacmd5.c hmacmd5.h
+-sasl_cram_md5_la_LDFLAGS = -module -avoid-version @CRAMMD5_LIBS@
++sasl_cram_md5_la_LDFLAGS = -module -avoid-version -no-undefined @CRAMMD5_LIBS@
+ sasl_cram_md5_la_DEPENDENCIES = @CRAMMD5_LTLIBOBJS@
+ sasl_cram_md5_la_LIBADD = @CRAMMD5_LTLIBOBJS@
+ EXTRA_DIST = md5.h md5.c
+diff -urN -x CYGWIN-PATCHES -x 'aclocal.m4*' -x autom4te.cache -x config.cache -x config.log -x config.status -x config.h -x config.h.in -x ABOUT-NLS -x Makefile.in.in -x Makevars.template -x '*SlackBuild*' -x '*.egg-info' -x '*.class' -x '*.pyc' -x '*.mo' -x '*.gmo' -x '*.orig' -x '*.rej' -x '*.spec' -x '*.temp' -x '*~' -x '*.stackdump' -x COPYING -x INSTALL -x compile -x config-ml.in -x config.guess -x config.sub -x depcomp -x elisp-comp -x install-sh -x ltmain.sh -x mdate-sh -x missing -x mkinstalldirs -x py-compile -x symlink-tree -x texinfo.tex -x ylwrap -x Makefile.in -x makefile.in -x configure -x omf.make -x xmldocs.make -x gnome-doc-utils.make -x gnome-doc-utils.m4 -x intltool.m4 -x intltool-extract -x intltool-extract.in -x intltool-merge -x intltool-merge.in -x intltool-update -x intltool-update.in origsrc/libesmtp-1.0.4/headers.c src/libesmtp-1.0.4/headers.c
+--- origsrc/libesmtp-1.0.4/headers.c	2005-12-15 14:52:01.000000000 -0600
++++ src/libesmtp-1.0.4/headers.c	2007-05-31 23:14:55.593750000 -0500
+@@ -32,6 +32,7 @@
+ #include <stdlib.h>
+ #include <unistd.h>
+ #include <time.h>
++#include <sys/time.h>
+ #include <errno.h>
+ 
+ #include <missing.h>
+diff -urN -x CYGWIN-PATCHES -x 'aclocal.m4*' -x autom4te.cache -x config.cache -x config.log -x config.status -x config.h -x config.h.in -x ABOUT-NLS -x Makefile.in.in -x Makevars.template -x '*SlackBuild*' -x '*.egg-info' -x '*.class' -x '*.pyc' -x '*.mo' -x '*.gmo' -x '*.orig' -x '*.rej' -x '*.spec' -x '*.temp' -x '*~' -x '*.stackdump' -x COPYING -x INSTALL -x compile -x config-ml.in -x config.guess -x config.sub -x depcomp -x elisp-comp -x install-sh -x ltmain.sh -x mdate-sh -x missing -x mkinstalldirs -x py-compile -x symlink-tree -x texinfo.tex -x ylwrap -x Makefile.in -x makefile.in -x configure -x omf.make -x xmldocs.make -x gnome-doc-utils.make -x gnome-doc-utils.m4 -x intltool.m4 -x intltool-extract -x intltool-extract.in -x intltool-merge -x intltool-merge.in -x intltool-update -x intltool-update.in origsrc/libesmtp-1.0.4/login/Makefile.am src/libesmtp-1.0.4/login/Makefile.am
+--- origsrc/libesmtp-1.0.4/login/Makefile.am	2005-12-16 07:26:37.000000000 -0600
++++ src/libesmtp-1.0.4/login/Makefile.am	2007-05-31 22:20:46.828125000 -0500
+@@ -2,10 +2,10 @@
+ 
+ libdir = @plugindir@
+ 
+-INCLUDES = -I@srcdir@
++INCLUDES = -I$(top_srcdir)
+ 
+ lib_LTLIBRARIES = sasl-login.la
+ AM_CFLAGS = @CFLAGS@ @EXTRA_CFLAGS@
+ 
+ sasl_login_la_SOURCES = client-login.c
+-sasl_login_la_LDFLAGS = -module -avoid-version
++sasl_login_la_LDFLAGS = -module -avoid-version -no-undefined
+diff -urN -x CYGWIN-PATCHES -x 'aclocal.m4*' -x autom4te.cache -x config.cache -x config.log -x config.status -x config.h -x config.h.in -x ABOUT-NLS -x Makefile.in.in -x Makevars.template -x '*SlackBuild*' -x '*.egg-info' -x '*.class' -x '*.pyc' -x '*.mo' -x '*.gmo' -x '*.orig' -x '*.rej' -x '*.spec' -x '*.temp' -x '*~' -x '*.stackdump' -x COPYING -x INSTALL -x compile -x config-ml.in -x config.guess -x config.sub -x depcomp -x elisp-comp -x install-sh -x ltmain.sh -x mdate-sh -x missing -x mkinstalldirs -x py-compile -x symlink-tree -x texinfo.tex -x ylwrap -x Makefile.in -x makefile.in -x configure -x omf.make -x xmldocs.make -x gnome-doc-utils.make -x gnome-doc-utils.m4 -x intltool.m4 -x intltool-extract -x intltool-extract.in -x intltool-merge -x intltool-merge.in -x intltool-update -x intltool-update.in origsrc/libesmtp-1.0.4/ntlm/Makefile.am src/libesmtp-1.0.4/ntlm/Makefile.am
+--- origsrc/libesmtp-1.0.4/ntlm/Makefile.am	2005-12-16 07:26:42.000000000 -0600
++++ src/libesmtp-1.0.4/ntlm/Makefile.am	2007-05-31 22:20:55.140625000 -0500
+@@ -2,10 +2,10 @@
+ 
+ libdir = @plugindir@
+ 
+-INCLUDES = -I@srcdir@
++INCLUDES = -I$(top_srcdir)
+ AM_CFLAGS = @CFLAGS@ @EXTRA_CFLAGS@
+ 
+ lib_LTLIBRARIES = sasl-ntlm.la
+ 
+ sasl_ntlm_la_SOURCES = client-ntlm.c ntlmdes.c ntlmstruct.c ntlm.h
+-sasl_ntlm_la_LDFLAGS = -module -avoid-version @NTLM_LIBS@
++sasl_ntlm_la_LDFLAGS = -module -avoid-version -no-undefined @NTLM_LIBS@
+diff -urN -x CYGWIN-PATCHES -x 'aclocal.m4*' -x autom4te.cache -x config.cache -x config.log -x config.status -x config.h -x config.h.in -x ABOUT-NLS -x Makefile.in.in -x Makevars.template -x '*SlackBuild*' -x '*.egg-info' -x '*.class' -x '*.pyc' -x '*.mo' -x '*.gmo' -x '*.orig' -x '*.rej' -x '*.spec' -x '*.temp' -x '*~' -x '*.stackdump' -x COPYING -x INSTALL -x compile -x config-ml.in -x config.guess -x config.sub -x depcomp -x elisp-comp -x install-sh -x ltmain.sh -x mdate-sh -x missing -x mkinstalldirs -x py-compile -x symlink-tree -x texinfo.tex -x ylwrap -x Makefile.in -x makefile.in -x configure -x omf.make -x xmldocs.make -x gnome-doc-utils.make -x gnome-doc-utils.m4 -x intltool.m4 -x intltool-extract -x intltool-extract.in -x intltool-merge -x intltool-merge.in -x intltool-update -x intltool-update.in origsrc/libesmtp-1.0.4/plain/Makefile.am src/libesmtp-1.0.4/plain/Makefile.am
+--- origsrc/libesmtp-1.0.4/plain/Makefile.am	2005-12-16 07:26:48.000000000 -0600
++++ src/libesmtp-1.0.4/plain/Makefile.am	2007-05-31 22:21:01.812500000 -0500
+@@ -2,10 +2,10 @@
+ 
+ libdir = @plugindir@
+ 
+-INCLUDES = -I@srcdir@
++INCLUDES = -I$(top_srcdir)
+ AM_CFLAGS = @CFLAGS@ @EXTRA_CFLAGS@
+ 
+ lib_LTLIBRARIES = sasl-plain.la
+ 
+ sasl_plain_la_SOURCES = client-plain.c
+-sasl_plain_la_LDFLAGS = -module -avoid-version
++sasl_plain_la_LDFLAGS = -module -avoid-version -no-undefined
