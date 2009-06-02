@@ -1,5 +1,5 @@
 category: Mail
-requires: cygwin
+requires: cygwin libgcc1 openssl
 sdesc: "SMTP client library (plugins)"
 ldesc: "libESMTP is an SMTP client which manages posting (or submission 
 of) electronic mail via a preconfigured Mail Transport Agent (MTA). It 

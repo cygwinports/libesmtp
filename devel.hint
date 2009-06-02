@@ -1,5 +1,5 @@
 category: Mail
-requires: cygwin openssl-devel
+requires: cygwin libesmtp5 openssl-devel
 external-source: libesmtp
 sdesc: "SMTP client library (development)"
 ldesc: "libESMTP is an SMTP client which manages posting (or submission 

@@ -9,32 +9,6 @@
  
  include_HEADERS = libesmtp.h auth-client.h auth-plugin.h 
  
---- origsrc/libesmtp-1.0.4/auth-client.c	2002-01-28 07:21:31.000000000 -0600
-+++ src/libesmtp-1.0.4/auth-client.c	2007-05-31 23:22:02.453125000 -0500
-@@ -33,7 +33,11 @@
- #if HAVE_DLSYM
- # include <dlfcn.h>
- # ifndef DLEXT
--#  define DLEXT ".so"
-+#  ifdef __CYGWIN__
-+#    define DLEXT ".dll"
-+#  else
-+#    define DLEXT ".so"
-+#  endif
- # endif
- # ifndef RTLD_LAZY
- #  define RTLD_LAZY RTLD_NOW
---- origsrc/libesmtp-1.0.4/configure.in	2005-12-15 14:37:42.000000000 -0600
-+++ src/libesmtp-1.0.4/configure.in	2007-05-31 22:11:04.187500000 -0500
-@@ -64,7 +64,7 @@
- osf*)
- 	AC_DEFINE(_OSF_SOURCE,1,[OSF needs this for getaddrinfo])
- 	;;
--*gnu*)
-+*gnu*|cygwin*)
- 	AC_DEFINE(_GNU_SOURCE,1,[GNU needs this for strcasecmp etc])
- 	;;
- esac
 --- origsrc/libesmtp-1.0.4/crammd5/Makefile.am	2005-12-16 07:26:08.000000000 -0600
 +++ src/libesmtp-1.0.4/crammd5/Makefile.am	2007-05-31 22:20:38.062500000 -0500
 @@ -2,13 +2,13 @@
@@ -53,16 +27,6 @@
  sasl_cram_md5_la_DEPENDENCIES = @CRAMMD5_LTLIBOBJS@
  sasl_cram_md5_la_LIBADD = @CRAMMD5_LTLIBOBJS@
  EXTRA_DIST = md5.h md5.c
---- origsrc/libesmtp-1.0.4/headers.c	2005-12-15 14:52:01.000000000 -0600
-+++ src/libesmtp-1.0.4/headers.c	2007-05-31 23:14:55.593750000 -0500
-@@ -32,6 +32,7 @@
- #include <stdlib.h>
- #include <unistd.h>
- #include <time.h>
-+#include <sys/time.h>
- #include <errno.h>
- 
- #include <missing.h>
 --- origsrc/libesmtp-1.0.4/login/Makefile.am	2005-12-16 07:26:37.000000000 -0600
 +++ src/libesmtp-1.0.4/login/Makefile.am	2007-05-31 22:20:46.828125000 -0500
 @@ -2,10 +2,10 @@

@@ -1,0 +1,26 @@
+--- origsrc/libesmtp-1.0.4/auth-client.c	2002-01-28 07:21:31.000000000 -0600
++++ src/libesmtp-1.0.4/auth-client.c	2007-05-31 23:22:02.453125000 -0500
+@@ -33,7 +33,11 @@
+ #if HAVE_DLSYM
+ # include <dlfcn.h>
+ # ifndef DLEXT
+-#  define DLEXT ".so"
++#  ifdef __CYGWIN__
++#    define DLEXT ".dll"
++#  else
++#    define DLEXT ".so"
++#  endif
+ # endif
+ # ifndef RTLD_LAZY
+ #  define RTLD_LAZY RTLD_NOW
+--- origsrc/libesmtp-1.0.4/configure.in	2005-12-15 14:37:42.000000000 -0600
++++ src/libesmtp-1.0.4/configure.in	2007-05-31 22:11:04.187500000 -0500
+@@ -64,7 +64,7 @@
+ osf*)
+ 	AC_DEFINE(_OSF_SOURCE,1,[OSF needs this for getaddrinfo])
+ 	;;
+-*gnu*)
++*gnu*|cygwin*)
+ 	AC_DEFINE(_GNU_SOURCE,1,[GNU needs this for strcasecmp etc])
+ 	;;
+ esac
