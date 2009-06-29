@@ -1,5 +1,5 @@
 category: Mail
-requires: cygwin libesmtp libgcc1 openssl
+requires: libesmtp libgcc1 openssl
 external-source: libesmtp
 sdesc: "SMTP client library (runtime)"
 ldesc: "libESMTP is an SMTP client which manages posting (or submission 
