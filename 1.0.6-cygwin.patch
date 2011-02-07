@@ -13,9 +13,9 @@
  # endif
  # ifndef RTLD_LAZY
  #  define RTLD_LAZY RTLD_NOW
---- origsrc/libesmtp-1.0.4/configure.in	2005-12-15 14:37:42.000000000 -0600
-+++ src/libesmtp-1.0.4/configure.in	2007-05-31 22:11:04.187500000 -0500
-@@ -64,7 +64,7 @@
+--- origsrc/libesmtp-1.0.6/configure.ac
++++ src/libesmtp-1.0.6/configure.ac
+@@ -65,7 +65,7 @@
  osf*)
  	AC_DEFINE(_OSF_SOURCE,1,[OSF needs this for getaddrinfo])
  	;;
