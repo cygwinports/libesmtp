@@ -1,5 +1,5 @@
 category: Mail
-requires: libopenssl098
+requires: libopenssl100
 external-source: libesmtp
 sdesc: "SMTP client library (runtime)"
 ldesc: "libESMTP is an SMTP client which manages posting (or submission 

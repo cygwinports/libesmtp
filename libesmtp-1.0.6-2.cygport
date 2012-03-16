@@ -6,13 +6,16 @@ SRC_URI="mirror://gentoo/${P}.tar.bz2"
 PATCH_URI="1.0.4-no-undefined.patch
            1.0.6-cygwin.patch"
 
-PKG_NAMES="${PN} ${PN}6 ${PN}-devel"
+PKG_NAMES="${PN}6 ${PN}-devel"
 libesmtp6_CONTENTS='usr/bin/cygesmtp-6.dll usr/lib/esmtp/'
 libesmtp_devel_CONTENTS="usr/bin/${PN}-config usr/include/ usr/lib/lib* usr/share/doc/"
 
 CYGCONF_ARGS="
 	--enable-ntlm
 	--enable-pthreads
+	--disable-static
 	--with-openssl
 	--with-auth-plugin-dir=/usr/lib/esmtp/${PV}
 "
+
+KEEP_LA_FILES="none"
